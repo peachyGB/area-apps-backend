@@ -1,9 +1,9 @@
 class BusinessesController < ApplicationController
-    #     #GET /businesses
-    # def index
-    #     businesses = Business.all
-    #     render json: businesses, except: [:created_at, :updated_at]
-    # end
+    #GET /businesses
+    def index
+        businesses = Business.all
+        render json: businesses, except: [:created_at, :updated_at]
+    end
 
     # #GET /businesses/:id
     # def show
