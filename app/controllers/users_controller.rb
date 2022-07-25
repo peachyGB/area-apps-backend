@@ -5,21 +5,22 @@ class UsersController < ApplicationController
         render json: users, except: [:created_at, :updated_at]
     end
 
-    # #GET /users/:id
-    # def show
-    #     user = User.find_by(id: params[:id])
-    #     if user
-    #         render json: user
-    #     else
-    #         render json: { error: "user not found" }, status: :not_found
-    #     end
-    # end
+    #GET /me
+    def show
+        user = User.find_by(id: session[:user_id])
+        if user
+        render json: user
+        # else
+        # #might need to change this to just send a "null"
+        # render json: { error: "Not authorized" }, status: :unauthorized
+        end
+    end
 
-#     #POST /users
-#     def create
-#         user = User.create(user_params)
-#         render json: user, status: :created
-#     end
+    #POST /users
+    def create
+        user = User.create(user_params)
+        render json: user, status: :created
+    end
 
 
 #     #PATCH /users/:id
@@ -44,9 +45,9 @@ class UsersController < ApplicationController
 #         end
 #     end
 
-# private
+private
 
-#     def user_params
-#       params.permit(:name, :category, :cost, :points)
-#     end
+    def user_params
+      params.permit(:username, :password)
+    end
 end
