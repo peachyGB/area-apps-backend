@@ -1,9 +1,10 @@
 class InteractionsController < ApplicationController
-    #     #GET /interactions
-    # def index
-    #     interactions = Interaction.all
-    #     render json: interactions, except: [:created_at, :updated_at]
-    # end
+        #GET /interactions
+    def index
+        interactions = Interaction.all
+        render json: interactions
+        # , except: [:created_at, :updated_at]
+    end
 
     # #GET /interactions/:id
     # def show

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-    #     #GET /users
-    # def index
-    #     users = User.all
-    #     render json: users, except: [:created_at, :updated_at]
-    # end
+        #GET /users
+    def index
+        users = User.all
+        render json: users, except: [:created_at, :updated_at]
+    end
 
     # #GET /users/:id
     # def show
