@@ -15,6 +15,15 @@ class InteractionsController < ApplicationController
             render json: { error: "Interaction not found" }, status: :not_found
         end
     end
+#GET /users/:id/interactions
+def userInt
+    user = User.find_by(id: params[:id])
+    if user
+            render json: user.interactions
+        else
+            render json: { error: "User not found" }, status: :not_found
+        end
+end
 
 #     #POST /interactions
 #     def create
@@ -25,7 +34,6 @@ class InteractionsController < ApplicationController
 
     #PATCH /interactions/:id
     def update
-        # byebug
         interaction = Interaction.find_by(id: params[:id])
         if interaction
             interaction.update(interaction_params)
