@@ -6,15 +6,15 @@ class InteractionsController < ApplicationController
         # , except: [:created_at, :updated_at]
     end
 
-    # #GET /interactions/:id
-    # def show
-    #     interaction = Interaction.find_by(id: params[:id])
-    #     if interaction
-    #         render json: interaction
-    #     else
-    #         render json: { error: "Interaction not found" }, status: :not_found
-    #     end
-    # end
+    #GET /interactions/:id
+    def show
+        interaction = Interaction.find_by(id: params[:id])
+        if interaction
+            render json: interaction
+        else
+            render json: { error: "Interaction not found" }, status: :not_found
+        end
+    end
 
 #     #POST /interactions
 #     def create
@@ -23,16 +23,18 @@ class InteractionsController < ApplicationController
 #     end
 
 
-#     #PATCH /interactions/:id
-#     def update
-#         interaction = Interaction.Find_by(id: params[:id])
-#         if interaction
-#             interaction.update(interaction_params)
-#             render json: interaction
-#         else
-#             render json: { error: "Interaction not found" }, status: :not_found
-#         end
-#     end
+    #PATCH /interactions/:id
+    def update
+        # byebug
+        interaction = Interaction.find_by(id: params[:id])
+        if interaction
+            interaction.update(interaction_params)
+            
+            render json: interaction, status: :ok
+        else
+            render json: { error: "Interaction not found" }, status: :not_found
+        end
+    end
 
 #     #DELETE /interactions/:id
 #     def destroy
@@ -45,9 +47,9 @@ class InteractionsController < ApplicationController
 #         end
 #     end
 
-# private
+private
 
-#     def interaction_params
-#       params.permit(:name, :category, :cost, :points)
-#     end
+    def interaction_params
+      params.permit(:id, :bookmark, :error_report)
+    end
 end
