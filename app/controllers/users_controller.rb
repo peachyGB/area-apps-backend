@@ -10,9 +10,9 @@ class UsersController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
         render json: user
-        # else
-        # #might need to change this to just send a "null"
-        # render json: { error: "Not authorized" }, status: :unauthorized
+        else
+        #might need to change this to just send a "null"
+        render json: { error: "Not authorized" }, status: :unauthorized
         end
     end
 
@@ -48,6 +48,6 @@ class UsersController < ApplicationController
 private
 
     def user_params
-      params.permit(:username, :password)
+      params.permit(:username, :password, admin:false)
     end
 end
