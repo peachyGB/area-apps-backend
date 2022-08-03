@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :businesses
   resources :users
 
+  get "/places/:zip/:radius/:category", to: "places#retrieve"
+  get "/places/:zip/:radius", to: "places#retrieve"
+
   post "/login", to: "sessions#create"
   get "/me", to: "users#show"
   delete "/logout", to: "sessions#destroy"
@@ -18,6 +21,6 @@ Rails.application.routes.draw do
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
   #Graveyard
-  # get '/places', to: "places#get_places"
+  
     # get "/sessions", to: "sessions#index"
 end
