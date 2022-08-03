@@ -37,3 +37,9 @@ class PlacesController < ApplicationController
 
 
 end
+# if results includes "game", skip the result
+# if ser API --> "organic results">"title":>"Recommended for you", return none found
+# cuztomizable radius?
+
+# &keyword=restaurant <-- not relegated to a set of words 
+# Categories: All, food(restaurant), retail (department_store, store), hotels(lodging), bank(bank)

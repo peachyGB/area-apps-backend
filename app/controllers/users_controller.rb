@@ -7,12 +7,14 @@ class UsersController < ApplicationController
 
     #GET /me
     def show
+
         user = User.find_by(id: session[:user_id])
+        
         if user
         render json: user
         else
         #might need to change this to just send a "null"
-        render json: { error: "Not authorized" }, status: :unauthorized
+        render json: { error: "Not Logged In" }, status: :unauthorized
         end
     end
 

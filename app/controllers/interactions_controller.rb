@@ -3,7 +3,6 @@ class InteractionsController < ApplicationController
     def index
         interactions = Interaction.all
         render json: interactions
-        # , except: [:created_at, :updated_at]
     end
 
     #GET /interactions/:id
@@ -19,6 +18,7 @@ class InteractionsController < ApplicationController
     #GET /users/:id/interactions
     def userInt
         user = User.find_by(id: params[:id])
+        und = "undefined"
         puts user
         if user
             render json: user.interactions
@@ -56,6 +56,12 @@ class InteractionsController < ApplicationController
         else
             render json: { error: "Interaction not found" }, status: :not_found
         end
+    end
+
+    #GET /errors
+    def errlist
+        list = Interaction.find_by(error_report: true)
+        render json: list
     end
 
     #     #DELETE /interactions/:id
