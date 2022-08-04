@@ -27,9 +27,9 @@ class InteractionsController < ApplicationController
         end
     end
 
-    #   POST /users/:id/interactions/:business
+    #   POST /users/:id/interactions
     def interact
-        bus = Business.find_by(appName: params[:business])
+        bus = Business.find_by(appName: params[:appName])
         if bus
             int = Interaction.find_by(business_id: bus.id)
             if int
@@ -60,7 +60,7 @@ class InteractionsController < ApplicationController
 
     #GET /errors
     def errlist
-        list = Interaction.find_by(error_report: true)
+        list = Interaction.where(error_report: true)
         render json: list
     end
 

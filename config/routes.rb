@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/users/:id/interactions", to: "interactions#userInt"
-  post "/users/:id/interactions/:business", to: "interactions#interact"
+  post "/users/:id/interactions", to: "interactions#interact"
 
   get "/errors", to: "interactions#errlist"
 

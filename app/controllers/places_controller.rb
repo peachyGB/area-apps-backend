@@ -19,23 +19,28 @@ class PlacesController < ApplicationController
         puts lat
         puts lon
 
-        googleUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{lat}%2C#{lon}&radius=#{params[:radius]}&keyword=#{params[:category]}&key=#{$goo_api_key}"
+        googleUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{lat}%2C#{lon}&radius=#{params[:radius]}&type=#{params[:category]}&key=#{$goo_api_key}"
         googleResponse = RestClient.get(googleUrl)
         googleInfo = JSON.parse(googleResponse.body)
         businessNames = []
         googleInfo["results"].each do |item|
             businessNames << item["name"]
         end
-        names_limiter = businessNames.slice(1,5)
-        # render json: googleResponse
+        puts businessNames 
+
+        uniqueBizNames = businessNames.uniq
+        puts uniqueBizNames
+
+        names_limiter = uniqueBizNames.slice(1,12)
         puts names_limiter
 
         search_results = []
         names_limiter.each do |name|
             search_results << JSON.parse(RestClient.get("https://serpapi.com/search.json?engine=google_play&q=#{name.parameterize}&store=apps&hl=en&gl=us&api_key=#{$ser_api_key}"))
         end
-        render json: search_results
+        render json: search_results 
     end
 
 
 end
+
