@@ -1,3 +1,3 @@
 class BusinessSerializer < ActiveModel::Serializer
-  attributes :id, :name, :link, :address, :category
+  attributes :id, :busName, :appName, :link, :appImage, :address, :category
 end

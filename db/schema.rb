@@ -16,8 +16,10 @@ ActiveRecord::Schema.define(version: 2022_07_22_175124) do
   enable_extension "plpgsql"
 
   create_table "businesses", force: :cascade do |t|
-    t.string "name"
+    t.string "busName"
+    t.string "appName"
     t.string "link"
+    t.string "appImage"
     t.string "address"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
